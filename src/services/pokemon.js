@@ -13,3 +13,11 @@ export const getPokemonList = async () => {
     })
     return data;
 }
+
+export const getPokemonDetail = async (id) => {
+    const response = await fetch(`${ENDPOINT}/${id}`);
+    const data = await response.json();
+    //adds img to pokemon
+    data.img = `${IMG_ENDPOINT}/${id}.png`
+    return data;
+}
