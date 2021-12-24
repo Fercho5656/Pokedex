@@ -15,6 +15,7 @@
     </div>
     <div class="loading-text">
       <span class="text-white">{{ text }}</span>
+      <span class="typewriting">....</span>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: "Cargando...",
+      default: "Cargando",
     },
   },
 };
@@ -138,5 +139,24 @@ span {
   font-weight: 700;
   color: #fff;
   margin: 0;
+}
+
+.typewriting {
+  display: block;
+  width: 4ch;
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  animation: typewriting 4s steps(4) infinite;
+  overflow: hidden;
+}
+
+@keyframes typewriting {
+  from {
+    width: 0;
+  }
 }
 </style>
