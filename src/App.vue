@@ -1,16 +1,18 @@
 <template>
+  <Navbar />
   <router-view />
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
 export default {
   name: "App",
+  components: {
+    Navbar,
+  },
 };
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
-h1, h2, h3, h4, h5, h6, p {
-  font-family: "Sora", sans-serif;
-}
 </style>
