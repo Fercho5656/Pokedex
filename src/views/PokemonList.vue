@@ -1,4 +1,5 @@
 <template>
+  <Loading v-if="isLoading" />
   <h1>Pokemon List</h1>
   <div class="container">
     <template v-for="pokemon in pokemonList.results" :key="pokemon.name">
@@ -15,18 +16,21 @@
 import { onMounted, ref } from "vue";
 import { getPokemonList } from "../services/pokemon";
 import PokemonCard from "../components/PokemonCard.vue";
+import Loading from "../components/Loading.vue";
 export default {
-  components: { PokemonCard },
+  components: { PokemonCard, Loading },
   name: "PokemonList",
   setup() {
     const pokemonList = ref([]);
-
+    const isLoading = ref(null);
     // Fetch the pokemon list
     onMounted(async () => {
+      isLoading.value = true;
       pokemonList.value = await getPokemonList();
+      isLoading.value = false;
     });
 
-    return { pokemonList };
+    return { pokemonList, isLoading };
   },
 };
 </script>
