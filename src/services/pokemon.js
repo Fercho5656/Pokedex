@@ -3,6 +3,7 @@ const IMG_ENDPOINT = "https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 
 export const getPokemonList = async () => {
     const response = await fetch(ENDPOINT);
+    if (response.status === 404) return null;
     const data = await response.json();
     //adds img to pokemon
     data.results.forEach(pokemon => {
@@ -16,6 +17,7 @@ export const getPokemonList = async () => {
 
 export const getPokemonDetail = async (id) => {
     const response = await fetch(`${ENDPOINT}/${id}`);
+    if (response.status === 404) return null;
     const data = await response.json();
     //adds img to pokemon
     data.img = `${IMG_ENDPOINT}/${id}.png`
