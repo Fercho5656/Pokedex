@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="redirect">
     <picture>
       <img class="pokemon_img" :src="img" :alt="name" />
     </picture>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 export default {
   props: {
     img: {
@@ -28,6 +28,15 @@ export default {
     },
   },
   name: "PokemonCard",
+  setup(props) {
+    const router = useRouter();
+    const redirect = () => {
+      router.push(`/pokemon/${props.number}`);
+    };
+    return {
+      redirect,
+    };
+  },
   computed: {
     //prefix zeros to the pokedex number
     pokedexNumber() {
@@ -41,7 +50,6 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
 .card {
   display: flex;
   justify-content: center;
