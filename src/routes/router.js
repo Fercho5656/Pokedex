@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import PokemonList from '../views/PokemonList.vue'
 import PokemonDetail from '../views/PokemonDetail.vue'
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
     {
@@ -19,6 +20,16 @@ const routes = [
         path: '/pokemon/:id',
         name: 'pokemon-detail',
         component: PokemonDetail,
+    },
+    {
+        path: '/notfound',
+        name: 'notfound',
+        component: NotFound,
+    },
+
+    {
+        path: '/:catchall(.*)',
+        redirect: '/notfound'
     }
 ]
 
