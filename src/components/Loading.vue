@@ -150,7 +150,7 @@ span {
   font-weight: 700;
   color: #fff;
   margin: 0;
-  animation: typewriting 4s steps(4) infinite;
+  animation: typewriting 2s steps(4) infinite;
   overflow: hidden;
 }
 
