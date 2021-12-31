@@ -1,13 +1,13 @@
 <template>
-  <Loading v-if="isLoading"/>
+  <Loading v-if="isLoading" />
   <div class="container">
-    <h2>{{ pokemonDetail.name }} #{{ pokedexNumber }}</h2>
+    <h2 class="capitalize">{{ pokemonDetail.name }} #{{ pokedexNumber }}</h2>
     <img class="img-fluid" :src="pokemonDetail.img" :alt="pokemonDetail.name" />
     <template v-for="stat in pokemonDetail.stats" :key="stat.stat.name">
-      <p>{{ stat.stat.name }}: {{ stat.base_stat }}</p>
+      <p class="capitalize">{{ stat.stat.name }}: {{ stat.base_stat }}</p>
     </template>
     <template v-for="type in pokemonDetail.types" :key="type.slot">
-      <p>{{ type.type.name }}</p>
+      <p class="capitalize">{{ type.type.name }}</p>
     </template>
     <p>{{ pokemonDetail.height / 10 }} m</p>
     <p>{{ pokemonDetail.weight / 10 }} Kg</p>
@@ -50,4 +50,7 @@ export default {
 </script>
 
 <style scoped>
+.capitalize {
+  text-transform: capitalize;
+}
 </style>
