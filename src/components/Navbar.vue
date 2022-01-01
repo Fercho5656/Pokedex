@@ -10,13 +10,20 @@
       <li>
         <router-link style="" to="/about">About</router-link>
       </li>
+      <li>
+        <Switch />
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import Switch from "../components/Switch.vue";
 export default {
   name: "Navbar",
+  components: {
+    Switch,
+  },
 };
 </script>
 
