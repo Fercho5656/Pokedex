@@ -27,13 +27,18 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap");
 
+/**Light theme*/
 :root {
-  --background-dark: #222134;
-  --background-dark-light: #4a485e;
-  --background-light: #fff;
-  --background-light-dark: #ccc;
-  --text-dark: #fff;
-  --text-light: #222134;
+  --background: #fff;
+  --background-accent: #4a485e;
+  --text: #222134;
+}
+
+/**Dark theme */
+.dark {
+  --background: #222134;
+  --background-accent: #ccc;
+  --text: #fff;
 }
 
 /**Reset Styles */
@@ -43,12 +48,11 @@ export default {
   box-sizing: border-box;
 }
 
-/**Light theme*/
 body,
 footer,
 nav {
-  background-color: var(--background-light);
-  color: var(--text-light);
+  background-color: var(--background);
+  color: var(--text);
 }
 
 p,
@@ -61,37 +65,11 @@ h6,
 a,
 span,
 svg {
-  color: var(--text-light);
+  color: var(--text);
 }
 
 a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--text-light);
-}
-
-/**Dark theme */
-.dark body,
-.dark footer,
-.dark nav {
-  background-color: var(--background-dark);
-  color: var(--text-dark);
-}
-
-.dark p,
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6,
-.dark a,
-.dark span,
-.dark svg {
-  color: var(--text-dark);
-}
-
-.dark a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--text-dark);
+  text-decoration-color: var(--text);
 }
 </style>
