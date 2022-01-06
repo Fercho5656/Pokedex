@@ -1,18 +1,12 @@
 <template>
   <template v-if="inNewTab">
-    <a :href="href" target="_blank" ref="noopener nonreferer">
+    <a class="my-2" :href="href" target="_blank" ref="noopener nonreferer">
       <slot></slot>
-      <p class="mx-2">
-        {{ text }}
-      </p>
     </a>
   </template>
   <template v-else>
-    <router-link :to="href">
+    <router-link class="my-2" :to="href">
       <slot></slot>
-      <p class="mx-2">
-        {{ text }}
-      </p>
     </router-link>
   </template>
 </template>
@@ -42,7 +36,6 @@ a {
   font-weight: 700;
   display: flex;
   align-items: center;
-  color: gainsboro;
   display: inline-block;
 }
 
