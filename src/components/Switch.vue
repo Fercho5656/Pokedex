@@ -1,10 +1,22 @@
 <template>
-  <input type="checkbox" class="switch" />
+  <input type="checkbox" class="switch" :checked="theme" @click="switchTheme" />
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import store from "../store/index";
 export default {
   name: "Switch",
+  setup() {
+    // Get the current theme from the store
+    const theme = computed(() => store.getters.getTheme() === "dark");
+    // Toggle the theme
+    const switchTheme = () => {
+      if (store.state.theme)
+        store.mutations.setTheme(theme.value ? "light" : "dark");
+    };
+    return { theme, switchTheme };
+  },
 };
 </script>
 
