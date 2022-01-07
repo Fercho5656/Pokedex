@@ -29,16 +29,16 @@ export default {
 
 /**Light theme*/
 :root {
-  --background: #fff;
-  --background-accent: #4a485e;
-  --text: #222134;
+  --background: 255, 255, 255; /* rgb(255, 255, 255) */
+  --background-accent: 245, 245, 245; /* rgb(245, 245, 245) */
+  --text: 34, 33, 52; /* rgb(34, 33, 52) */
 }
 
 /**Dark theme */
 .dark {
-  --background: #222134;
-  --background-accent: #ccc;
-  --text: #fff;
+  --background: 34, 33, 52; /* rgb(34, 33, 52) */
+  --background-accent: 43, 43, 43; /* rgb(43, 43, 43) */
+  --text: 255, 255, 255; /* rgb(255, 255, 255) */
 }
 
 /**Reset Styles */
@@ -46,16 +46,18 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: color 0.2s linear;
 }
 
 body,
 footer,
 nav {
-  background-color: var(--background);
-  color: var(--text);
+  background-color: rgb(var(--background));
+  color: rgb(var(--text));
 }
 
 p,
+pre,
 h1,
 h2,
 h3,
@@ -65,11 +67,12 @@ h6,
 a,
 span,
 svg {
-  color: var(--text);
+  font-family: "Sora", sans-serif;
+  color: rgb(var(--text));
 }
 
 a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--text);
+  text-decoration-color: rgb(var(--text));
 }
 </style>
