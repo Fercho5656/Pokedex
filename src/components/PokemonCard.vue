@@ -3,6 +3,7 @@
     <picture>
       <img class="pokemon_img" :src="img" :alt="name" />
     </picture>
+    <hr />
     <div class="card_content">
       <p class="pokemon_number">#{{ pokedexNumber }}</p>
       <p class="pokemon_name">{{ pokemonName }}</p>
@@ -53,7 +54,7 @@ export default {
 .card {
   display: flex;
   justify-content: center;
-  background-color: #fff;
+  flex-flow: column nowrap;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   margin: 10px;
@@ -61,29 +62,33 @@ export default {
 }
 
 .card:hover {
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 20px rgba(var(--text), 0.4);
   cursor: pointer;
   transform: translateY(-5px);
 }
 
 picture {
-  background: #f5f5f5;
+  border-radius: 10px 10px 0 0;
+  background: rgb(var(--background-accent));
 }
 .pokemon_img {
   height: 250px;
 }
 
-.card_content {
-  margin-left: 10px;
+hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-p {
-  font-family: "Sora", sans-serif;
+.card_content {
+  background-color: rgb(var(--background-accent));
+  border-radius: 0 0 10px 10px;
+  padding-left: 10px;
 }
 
 .pokemon_number {
   font-size: 1.25rem;
-  color: #919191;
 }
 
 .pokemon_name {
