@@ -1,15 +1,17 @@
 <template>
   <Loading v-if="isLoading" />
-  <h1>Pokemon List</h1>
-  <div class="container">
-    <template v-for="pokemon in pokemonList.results" :key="pokemon.name">
-      <PokemonCard
-        :img="pokemon.img"
-        :name="pokemon.name"
-        :number="pokemon.number"
-      />
-    </template>
-  </div>
+  <main>
+    <h1>Pokemon List</h1>
+    <div class="container">
+      <template v-for="pokemon in pokemonList.results" :key="pokemon.name">
+        <PokemonCard
+          :img="pokemon.img"
+          :name="pokemon.name"
+          :number="pokemon.number"
+        />
+      </template>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -36,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+main {
+  background: rgb(var(--background));
+  padding: 20px;
+}
 .container {
   display: flex;
   justify-content: center;
