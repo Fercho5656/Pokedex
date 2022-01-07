@@ -36,7 +36,6 @@ a {
   font-weight: 700;
   display: flex;
   align-items: center;
-  display: inline-block;
 }
 
 a:hover {
