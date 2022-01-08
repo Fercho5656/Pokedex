@@ -43,8 +43,11 @@ main {
   padding: 20px;
 }
 .container {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template: repeat(auto-fill, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 25px 20px;
+  padding: 50px 0;
+  justify-items: center;
+  align-items: center;
 }
 </style>
