@@ -7,9 +7,12 @@
           Pokédex is a Vue 3 project that consumes the PokéAPI to display a list
           of Pokémon. It is a work in progress. It is not a complete Pokédex. It
           is a proof of concept. Source code is available on
-          <Anchor href="https://github.com/Fercho5656/Pokedex" :inNewTab="true">
-            this repo.
-          </Anchor>
+          <a
+            href="https://github.com/Fercho5656/Pokedex"
+            target="_blank"
+            ref="noopener nonreferer"
+            >this repo.</a
+          >
         </p>
       </li>
       <li class="links">
@@ -127,6 +130,11 @@ footer {
 
 .list-unstyled {
   list-style: none;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
 }
 
 footer > ul {
