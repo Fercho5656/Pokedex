@@ -1,11 +1,11 @@
 <template>
   <template v-if="inNewTab">
-    <a class="my-2" :href="href" target="_blank" ref="noopener nonreferer">
+    <a :href="href" target="_blank" ref="noopener nonreferer">
       <slot></slot>
     </a>
   </template>
   <template v-else>
-    <router-link class="my-2" :to="href">
+    <router-link :to="href">
       <slot></slot>
     </router-link>
   </template>
@@ -17,9 +17,6 @@ export default {
     href: {
       type: String,
       default: "#",
-    },
-    text: {
-      type: String,
     },
     inNewTab: {
       type: Boolean,
