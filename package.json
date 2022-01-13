@@ -12,6 +12,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",
+    "standard": "^16.0.4",
     "vite": "^2.7.2"
+  }, 
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
