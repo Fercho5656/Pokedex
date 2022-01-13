@@ -6,38 +6,38 @@ import PokemonDetail from '../views/PokemonDetail.vue'
 import NotFound from '../views/NotFound.vue'
 
 const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: Home
-    },
-    {
-        path: '/pokemon',
-        name: 'pokemon',
-        component: PokemonList,
-    },
-    {
-        path: '/pokemon/:id',
-        name: 'pokemon-detail',
-        component: PokemonDetail,
-    },
-    {
-        path: '/notfound',
-        name: 'notfound',
-        component: NotFound,
-    },
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/pokemon',
+    name: 'pokemon',
+    component: PokemonList
+  },
+  {
+    path: '/pokemon/:id',
+    name: 'pokemon-detail',
+    component: PokemonDetail
+  },
+  {
+    path: '/notfound',
+    name: 'notfound',
+    component: NotFound
+  },
 
-    {
-        path: '/:catchall(.*)',
-        redirect: '/notfound'
-    }
+  {
+    path: '/:catchall(.*)',
+    redirect: '/notfound'
+  }
 ]
 
 const history = createWebHistory()
 
 const router = createRouter({
-    history: history,
-    routes: routes
+  history: history,
+  routes: routes
 })
 
 export default router
