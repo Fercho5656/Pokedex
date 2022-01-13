@@ -1,8 +1,8 @@
 <template>
   <Loading v-if="isLoading" />
-  <main>
+  <main class="container">
     <h1>Pokemon List</h1>
-    <div class="container">
+    <div class="grid">
       <template v-for="pokemon in pokemonList.results" :key="pokemon.name">
         <PokemonCard
           :img="pokemon.img"
@@ -39,12 +39,14 @@ export default {
 
 <style scoped>
 main {
-  background: rgb(var(--background));
   padding: 20px;
 }
-.container {
+.grid {
   display: grid;
-  grid-template: repeat(auto-fill, minmax(300px, 1fr)) / repeat(auto-fill, minmax(300px, 1fr));
+  grid-template: repeat(auto-fill, minmax(300px, 1fr)) / repeat(
+      auto-fill,
+      minmax(300px, 1fr)
+    );
   grid-gap: 25px 20px;
   padding: 50px 0;
   justify-items: center;
