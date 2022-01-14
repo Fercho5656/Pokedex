@@ -1,17 +1,20 @@
 <template>
-  <div class="info">
-    <ul class="pokemon_attributes">
-      <li v-for="attribute in attributes" :key="attribute.name">
-        <p class="attribute_name">{{ attribute.name }}</p>
-        <p class="attribute_value">{{ attribute.value }}</p>
-      </li>
-    </ul>
-    <ul class="pokemon_abilities">
-      <p class="name">Abilities</p>
-      <li v-for="ability in abilities" :key="ability.name">
-        <p class="ability_name">{{ ability.ability.name }}</p>
-      </li>
-    </ul>
+  <div class="card">
+    <header><h2>Attributes</h2></header>
+    <div class="info">
+      <ul class="pokemon_attributes">
+        <li v-for="attribute in attributes" :key="attribute.name">
+          <p class="attribute_name">{{ attribute.name }}</p>
+          <p class="attribute_value">{{ attribute.value }}</p>
+        </li>
+      </ul>
+      <ul class="pokemon_abilities">
+        <p class="name">Abilities</p>
+        <li v-for="ability in abilities" :key="ability.name">
+          <p class="ability_name">{{ ability.ability.name }}</p>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -33,17 +36,32 @@ export default {
 
 <style scoped>
 .info {
-  align-items: flex-start;
-  background-color: rgb(var(--card-bg));
-  border-radius: 5px;
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
   justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  border-radius: 10px;
   margin: 0;
   padding: 10px 5px;
   max-width: 320px;
-  height: auto;
-  width: 100%;
+  max-height: 320px;
+  width: 50vw;
+  height: 100%;
+}
+
+header {
+  position: relative;
+  top: -5%;
+  background-color: transparent;
+  align-self: center;
 }
 
 ul > p {
@@ -62,12 +80,19 @@ li > p:last-child {
 }
 
 @media screen and (max-width: 425px) {
+  header {
+    top: 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
   p {
     font-size: 0.8rem;
   }
   .info {
     flex-flow: column wrap;
     align-content: center;
+    width: 45vw;
   }
   ul {
     flex-flow: column wrap;
@@ -84,7 +109,6 @@ li > p:last-child {
 
 @media screen and (min-width: 426px) and (max-width: 768px) {
   .info {
-    flex-flow: column wrap;
     align-content: center;
   }
 }
