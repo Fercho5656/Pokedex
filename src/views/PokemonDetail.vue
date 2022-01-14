@@ -104,7 +104,7 @@ h2, h3 {
 
 .img-fluid {
   max-width: 320px;
-  width: 100%;
+  width: 50vw;
   height: auto;
   background-color: rgb(var(--background-accent));
   border-radius: 10px;
@@ -118,5 +118,11 @@ ul {
 li {
   display: block;
   width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  .pokemon_info {
+    grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+  }
 }
 </style>
