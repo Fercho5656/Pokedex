@@ -42,7 +42,7 @@ export default {
   --background: 255, 255, 255; /* rgb(255, 255, 255) */
   --background-accent: 245, 245, 245; /* rgb(245, 245, 245) */
   --text: 34, 33, 52; /* rgb(34, 33, 52) */
-  --card-bg: 48, 167, 215; /* rgb(48, 167, 215) */
+  --card-bg: 31, 162, 255 /* rgb(31, 162, 255) */
 }
 
 /**Dark theme */
