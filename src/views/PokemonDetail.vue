@@ -3,11 +3,11 @@
   <main class="container">
     <h2 class="capitalize">{{ pokemonDetail.name }} #{{ pokedexNumber }}</h2>
     <div class="pokemon_info">
-      <img
-        class="img-fluid"
-        :src="pokemonDetail.img"
-        :alt="pokemonDetail.name"
-      />
+      <picture>
+        <img class="img-fluid" :src="pokemonSprite" :alt="pokemonDetail.name" />
+        <input type="checkbox" name="gender" :checked="isMale" @click="changeGender" />
+        <input type="checkbox" name="shiny" :checked="isShiny" @click="changeShiny" />
+      </picture>
       <InfoCard :attributes="pokemonAttributes" :abilities="pokemonAbilities" />
       <div class="base_Stats">
         <!-- To be replaced with charts -->
@@ -19,7 +19,7 @@
       <ul class="types">
         <h3>Type</h3>
         <li v-for="type in pokemonDetail.types" :key="type.slot">
-          <Badge :type="type.type.name" :class="type.type.name" />
+          <Badge :type="type.type.name" />
         </li>
       </ul>
     </div>
@@ -44,8 +44,37 @@ export default {
     const { id } = useRoute().params;
     const router = useRouter();
     const pokemonDetail = ref([]);
+    const pokemonSprites = ref();
     const pokemonAttributes = ref([]);
     const pokemonAbilities = ref([]);
+
+    const isMale = ref(true);
+    const isShiny = ref(false);
+    const pokemonSprite = ref();
+
+    const changeGender = () => {
+      isMale.value = !isMale.value;
+      changeSprite();
+    };
+
+    const changeShiny = () => {
+      isShiny.value = !isShiny.value;
+      changeSprite();
+    };
+
+    const changeSprite = () => {
+      isMale.value
+        ? isShiny.value
+          ? (pokemonSprite.value = pokemonSprites.value.front_shiny)
+          : (pokemonSprite.value = pokemonSprites.value.front_default)
+        : isShiny.value
+          ? (pokemonSprite.value =
+            pokemonSprites.value.front_shiny_female ??
+            pokemonSprites.value.front_shiny)
+          : (pokemonSprite.value =
+            pokemonSprites.value.front_female ??
+            pokemonSprites.value.front_default);
+    };
 
     const isLoading = ref(null);
 
@@ -67,10 +96,22 @@ export default {
         },
       ];
       pokemonDetail.value = pokemon;
+      pokemonSprites.value = pokemonDetail.value.sprites.other.home;
+      pokemonSprite.value = pokemonSprites.value.front_default;
       pokemonAbilities.value = abilities;
       isLoading.value = false;
     });
-    return { pokemonDetail, isLoading, pokemonAttributes, pokemonAbilities };
+    return {
+      pokemonDetail,
+      isLoading,
+      pokemonAttributes,
+      pokemonAbilities,
+      isMale,
+      isShiny,
+      pokemonSprite,
+      changeGender,
+      changeShiny,
+    };
   },
   computed: {
     pokedexNumber() {
@@ -95,7 +136,59 @@ main {
   justify-items: center;
 }
 
-h2, h3 {
+picture {
+  position: relative;
+}
+
+picture > input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all ease-in-out 1s;
+}
+
+input[name="gender"] {
+  left: 0;
+}
+
+input[name="gender"]::after {
+  content: "🚺";
+}
+
+input[name="gender"]:checked::after {
+  content: "🚹";
+}
+
+input[name="shiny"] {
+  right: 0;
+  margin-top: 0.5rem;
+  transform: rotate(180deg);
+}
+
+input[name="shiny"]::after {
+  opacity: 0.3;
+  content: "💡";
+}
+
+input[name="shiny"]:hover:not(:checked):after {
+  animation: flickerBulb 1s infinite;
+}
+
+input[name="shiny"]:checked {
+  margin: 0;
+  transform: rotate(-360deg);
+}
+
+input[name="shiny"]:checked::after {
+  opacity: 1;
+}
+
+h2,
+h3 {
   text-align: center;
 }
 .capitalize {
@@ -108,6 +201,7 @@ h2, h3 {
   height: auto;
   background-color: rgb(var(--background-accent));
   border-radius: 10px;
+  transition: all linear 0.5s;
 }
 
 ul {
@@ -123,6 +217,18 @@ li {
 @media screen and (max-width: 425px) {
   .pokemon_info {
     grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+  }
+}
+
+@keyframes flickerBulb {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
 </style>
