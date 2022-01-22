@@ -89,10 +89,12 @@ li > p:last-child {
   p {
     font-size: 0.8rem;
   }
+  .card {
+    width: 40vw;
+  }
   .info {
     flex-flow: column wrap;
     align-content: center;
-    width: 45vw;
   }
   ul {
     flex-flow: column wrap;
