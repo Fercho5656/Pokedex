@@ -2,7 +2,7 @@
   <header>
     <Anchor class="logo" href="/">
       <img src="../assets/logo.png" alt="logo" />
-      <p>Pokédex</p>
+      <p>Vuedex</p>
     </Anchor>
     <nav>
       <ul>
