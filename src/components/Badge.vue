@@ -1,5 +1,5 @@
 <template>
-  <span>{{ type }}</span>
+  <span :class="type">{{ type }}</span>
 </template>
 
 <script>
