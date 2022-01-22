@@ -1,20 +1,6 @@
 <template>
   <footer>
     <ul class="list-unstyled">
-      <li class="about">
-        <h3>About</h3>
-        <p>
-          Pokédex is a Vue 3 project that consumes the PokéAPI to display a list
-          of Pokémon. It is a work in progress. It is not a complete Pokédex. It
-          is a proof of concept. Source code is available on
-          <a
-            href="https://github.com/Fercho5656/Pokedex"
-            target="_blank"
-            ref="noopener nonreferer"
-            >this repo.</a
-          >
-        </p>
-      </li>
       <li class="links">
         <h3>Links</h3>
         <ul class="list-unstyled">
