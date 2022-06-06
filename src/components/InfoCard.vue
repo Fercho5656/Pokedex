@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <header><h2>Attributes</h2></header>
+    <header>
+      <h2>Attributes</h2>
+    </header>
     <div class="info">
       <ul class="pokemon_attributes">
         <li v-for="attribute in attributes" :key="attribute.name">
@@ -24,13 +26,15 @@ export default {
   props: {
     attributes: {
       type: Array,
+      default: () => [],
       required: true,
     },
     abilities: {
       type: Array,
+      default: () => [],
       required: true,
     },
-  },
+  }
 };
 </script>
 
