@@ -8,7 +8,7 @@
         <input type="checkbox" name="gender" :checked="isMale" @click="changeGender" />
         <input type="checkbox" name="shiny" :checked="isShiny" @click="changeShiny" />
       </picture>
-      <InfoCard :attributes="pokemonAttributes" :abilities="pokemonAbilities" />
+      <InfoCard :attributes="pokemonAttributes" :abilities="pokemonDetail.abilities" />
       <div class="base_Stats">
         <!-- To be replaced with charts -->
         <h3>Base Stats</h3>
@@ -46,7 +46,7 @@ export default {
     const pokemonDetail = ref([]);
     const pokemonSprites = ref();
     const pokemonAttributes = ref([]);
-    const pokemonAbilities = ref([]);
+    const isLoading = ref(true);
 
     const isMale = ref(true);
     const isShiny = ref(false);
@@ -76,36 +76,31 @@ export default {
             pokemonSprites.value.front_default);
     };
 
-    const isLoading = ref(null);
-
     onMounted(async () => {
       isLoading.value = true;
       //redirects to 404 if the pokemon doesn't exist
       const pokemon = await getPokemonDetail(id);
       if (!pokemon) router.push("/404");
       //get the pokemon attributes from the pokemon
-      const { height, weight, abilities } = pokemon;
       pokemonAttributes.value = [
         {
           name: "Height",
-          value: `${height / 10} m`,
+          value: `${pokemon.height / 10} m`,
         },
         {
           name: "Weight",
-          value: `${weight / 10} kg`,
+          value: `${pokemon.weight / 10} kg`,
         },
       ];
       pokemonDetail.value = pokemon;
       pokemonSprites.value = pokemonDetail.value.sprites.other.home;
       pokemonSprite.value = pokemonSprites.value.front_default;
-      pokemonAbilities.value = abilities;
       isLoading.value = false;
     });
     return {
       pokemonDetail,
       isLoading,
       pokemonAttributes,
-      pokemonAbilities,
       isMale,
       isShiny,
       pokemonSprite,
