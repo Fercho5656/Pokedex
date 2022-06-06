@@ -3,11 +3,8 @@
   <main class="container">
     <h2 class="capitalize">{{ pokemonDetail.name }} #{{ pokedexNumber }}</h2>
     <div class="pokemon_info">
-      <picture>
-        <img class="img-fluid" :src="pokemonSprite" :alt="pokemonDetail.name" />
-        <input type="checkbox" name="gender" :checked="isMale" @click="changeGender" />
-        <input type="checkbox" name="shiny" :checked="isShiny" @click="changeShiny" />
-      </picture>
+      <PokemonPicture :pokemon-sprite="pokemonSprite" :pokemon-name="pokemonDetail.name" :is-male="isMale"
+        :is-shiny="isShiny" @change-gender="changeGender" @change-shiny="changeShiny" />
       <InfoCard :attributes="pokemonAttributes" :abilities="pokemonDetail.abilities" />
       <div class="base_Stats">
         <!-- To be replaced with charts -->
@@ -36,6 +33,7 @@ export default {
 import { useRoute, useRouter } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 import { getPokemonDetail } from "../services/pokemon";
+import PokemonPicture from '../components/PokemonPicture.vue';
 import Loading from "../components/Loading.vue";
 import InfoCard from "../components/InfoCard.vue";
 import Badge from "../components/Badge.vue";
@@ -105,68 +103,16 @@ onMounted(async () => {
 <style scoped>
 main {
   width: 100vw;
-  height: 100vh;
   padding: 20px;
 }
 
 .pokemon_info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 20px;
   margin-bottom: 20px;
   align-items: center;
   justify-items: center;
-}
-
-picture {
-  position: relative;
-}
-
-picture>input[type="checkbox"] {
-  position: absolute;
-  top: 0;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  font-size: 1.5em;
-  cursor: pointer;
-  transition: all ease-in-out 1s;
-}
-
-input[name="gender"] {
-  left: 0;
-}
-
-input[name="gender"]::after {
-  content: "🚺";
-}
-
-input[name="gender"]:checked::after {
-  content: "🚹";
-}
-
-input[name="shiny"] {
-  right: 0;
-  margin-top: 0.5rem;
-  transform: rotate(180deg);
-}
-
-input[name="shiny"]::after {
-  opacity: 0.3;
-  content: "💡";
-}
-
-input[name="shiny"]:hover:not(:checked):after {
-  animation: flickerBulb 1s infinite;
-}
-
-input[name="shiny"]:checked {
-  margin: 0;
-  transform: rotate(-360deg);
-}
-
-input[name="shiny"]:checked::after {
-  opacity: 1;
 }
 
 h2,
@@ -178,15 +124,6 @@ h3 {
   text-transform: capitalize;
 }
 
-.img-fluid {
-  max-width: 320px;
-  width: 50vw;
-  height: auto;
-  background-color: rgb(var(--background-accent));
-  border-radius: 10px;
-  transition: all linear 0.5s;
-}
-
 ul {
   display: inline-block;
   flex-direction: column;
@@ -195,20 +132,5 @@ ul {
 li {
   display: block;
   width: 100%;
-}
-
-
-@keyframes flickerBulb {
-  0% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.5;
-  }
 }
 </style>
