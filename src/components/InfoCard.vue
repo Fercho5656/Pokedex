@@ -57,8 +57,6 @@ export default {
   padding: 10px 5px;
   max-width: 320px;
   max-height: 320px;
-  width: 50vw;
-  height: 100%;
 }
 
 header {
