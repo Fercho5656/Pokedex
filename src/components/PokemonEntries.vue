@@ -4,14 +4,13 @@
             <h3>{{ props.pokemonName }}</h3>
         </header>
         <div class="entries-content">
-            <p v-if="!singleEntry">{{ pokedexEntries[0] }}</p>
-            <p v-else>{{ singleEntry }}</p>
+            <p>{{ pokedexEntries[entryIdx] }}</p>
         </div>
         <footer>
-            <ul>
-                <li v-for="entry in props.pokedexEntries">
-                    <button class="btn-dot" :class="(singleEntry === entry) ? 'selected' : ''"
-                        @click="singleEntry = entry">⚪</button>
+            <ul class="slider">
+                <li v-for="(entry, index) in props.pokedexEntries">
+                    <button class="btn-dot" :class="(index === entryIdx) ? 'selected' : ''"
+                        @click="entryIdx = index">⚪</button>
                 </li>
             </ul>
         </footer>
@@ -32,7 +31,7 @@ const props = defineProps({
     }
 })
 
-const singleEntry = ref('')
+const entryIdx = ref(0);
 </script>
 
 <style scoped>
@@ -43,7 +42,7 @@ footer {
     border-radius: 10px;
 }
 
-header > h3 {
+header>h3 {
     text-transform: capitalize;
 }
 
@@ -58,6 +57,16 @@ header > h3 {
 
 .entries-content {
     min-height: 10ch;
+}
+
+footer {
+    width: 100%;
+}
+
+.slider {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
 }
 
 li {
