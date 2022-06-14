@@ -3,8 +3,8 @@
   <main class="container">
     <h2 class="capitalize">{{ pokemonDetail.name }} #{{ pokedexNumber }}</h2>
     <div class="pokemon_info">
-      <PokemonPicture :pokemon-sprite="pokemonSprite" :pokemon-name="pokemonDetail.name" :is-male="isMale"
-        :is-shiny="isShiny" @change-gender="changeGender" @change-shiny="changeShiny" />
+      <PokemonPicture :pokemonSprite="pokemonSprite" :pokemonName="pokemonDetail.name" :isMale="isMale"
+        :isShiny="isShiny" @changeGender="changeGender" @changeShiny="changeShiny" />
       <InfoCard :attributes="pokemonAttributes" :abilities="pokemonDetail.abilities" />
       <div class="base_Stats">
         <!-- To be replaced with charts -->
@@ -80,7 +80,7 @@ const changeSprite = () => {
 onMounted(async () => {
   isLoading.value = true;
   //redirects to 404 if the pokemon doesn't exist
-  const pokemon = await getPokemonDetail(id);
+  const { data: pokemon } = await getPokemonDetail(id);
   if (!pokemon) router.push("/404");
   //get the pokemon attributes from the pokemon
   pokemonAttributes.value = [
