@@ -55,6 +55,8 @@ export default {
   border-radius: 10px;
   margin: 0;
   padding: 10px 5px;
+  min-width: 250px;
+  min-height: 250px;
   max-width: 320px;
   max-height: 320px;
 }
@@ -89,7 +91,7 @@ li > p:last-child {
     font-size: 1.3rem;
   }
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .card {
     width: 40vw;
