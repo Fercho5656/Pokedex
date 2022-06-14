@@ -1,5 +1,7 @@
 const ENDPOINT = import.meta.env.VITE_POKEMON_LIST_ENDPOINT
-const IMG_ENDPOINT = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
+const IMG_ENDPOINT =
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
+const DESCRIPTION_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon-species/'
 // const DETAILED_IMG_ENDPOINT = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home'
 
 export const getPokemonList = async () => {
@@ -16,11 +18,11 @@ export const getPokemonList = async () => {
   return data
 }
 
-export const getPokemonDetail = async (id) => {
+export const getPokemonDetail = async id => {
   const response = await window.fetch(`${ENDPOINT}/${id}`)
-  if (response.status === 404) return null
+  const detailsResponse = await window.fetch(`${DESCRIPTION_ENDPOINT}${id}`)
+  if (!response.ok || !detailsResponse.ok) throw new Error('Pokemon not found')
   const data = await response.json()
-  // adds img to pokemon
-  // data.img = `${DETAILED_IMG_ENDPOINT}/${id}.png`
-  return data
+  const detailsData = await detailsResponse.json()
+  return { data, detailsData }
 }
