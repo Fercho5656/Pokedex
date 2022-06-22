@@ -12,7 +12,7 @@
 const props = defineProps({
     pokemonName: {
         type: String,
-        required: true,
+        default: '',
     },
     pokemonSprite: {
         type: String,
