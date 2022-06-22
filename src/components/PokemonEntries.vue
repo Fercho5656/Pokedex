@@ -35,24 +35,26 @@ const entryIdx = ref(0);
 </script>
 
 <style scoped>
-header,
-.entries-card,
-footer {
-    background-color: rgb(var(--card-bg));
-    border-radius: 10px;
-}
 
-header>h3 {
-    text-transform: capitalize;
+header, footer {
+    background-color: transparent;
 }
-
 .entries-card {
-    padding: 10px;
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+    background: linear-gradient(to right, #0083B0, #00B4DB);
+    border-radius: 10px;
+    max-width: 300px;
+    padding: 15px;
     display: flex;
     margin: 10px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+header>h3 {
+    text-transform: capitalize;
 }
 
 .entries-content {
